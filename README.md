@@ -18,7 +18,7 @@ You'll need...
 - A Nintendo Switch set up to run Atmosphere
 - *Xenoblade Chronicles 2* version **v1.0.0-v2.0.0** (or just the `main` exefs for that version with installed update **v2.1.0**. ***v3.0.0+*** *is untested.*)
   - Despite 'supporting' all of these versions in theory, the version this mod was developed on is **v1.5.1**, and that'll be the only version with full compatibility.
-- For online play, you'll need a PC capable of emulating Xenoblade 2. For more information about this, go to the 'BLANK' section below
+- For online play, you'll need a PC capable of emulating Xenoblade 2. For more information about this, go to the `Yuzu + Parsec` section below
 
 ## Installation and Hosting (Nintendo Switch)
 For Nintendo Switch users intending for simple couch play, hosting is simple.
