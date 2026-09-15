@@ -22,7 +22,8 @@ You'll need...
 
 ## Installation and Hosting (Nintendo Switch)
 For Nintendo Switch users intending for simple couch play, hosting is simple.
-- Install your **v1.0.0-v2.0.0**/**v1.5.1** update, or place your version's 'main' exefs at `sd:\atmosphere\contents\0100E95004038000\exefs\` and install update **v2.1.0**
+- Install your **v1.0.0-v2.0.0**/**v1.5.1** update, or alternatively, place your version's 'main' exefs at `sd:\atmosphere\contents\0100E95004038000\exefs\` and install update **v2.1.0**
+- Download the [latest release](https://github.com/mawmz/EtherNet/releases) for Switch and extract it to the root of your SD card.
 - Boot the game and connect another controller, and away you go!
 - If something buggy occurs while playing, Press `L + R + ZL + ZR` to open a debug menu.
 - Have fun!
@@ -37,6 +38,7 @@ If you intend for couch play on an emulator, simply follow the instructions for 
 - Install Xenoblade Chronicles 2
 - Install your **v1.0.0-v2.0.0**/**v1.5.1** update, or place your version's `main` exefs at `sd:\atmosphere\contents\0100E95004039001\exefs\` and install update **v2.1.0**
 - Install any DLC you'd like to play with.
+- Download the [latest release](https://github.com/mawmz/EtherNet/releases) for Yuzu and extract it to the root of your SD card. 
 - Open the game once to confirm the mod is properly installed. If the mod is installed correctly, you should see log messages in the top left. If not, ensure the mod is installed at the proper location. Where you install this mod on emulator differs from the Nintendo Switch install location.
 - Install Parsec on your PC
 - Once Parsec is installed, open it. Go to `Settings > Host` and scroll down until you see `Parsec Virtual USB Gamepads (Beta)` and install the driver. Restart your PC.
