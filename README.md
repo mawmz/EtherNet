@@ -47,6 +47,7 @@ If you intend for couch play on an emulator, simply follow the instructions for 
 - Go back to `Computers` and hit `Share`, then send the link to your player 2 to have them join the session. If setup went correctly for the remote player, a 'Windows connect' noise should be heard upon joining, indicating their controller has connected successfully. Now is a good time to connect your controller too!
 - In Yuzu, go to `Emulation > Configure > Controls` and select your and player 2's controllers under `Input Device`. Both should appear if the Virtual USB Gamepad is installed.
 - Test in-game that both controllers work correctly. If they do, congratulations! Have fun exploring and battling throughout Alrest!
+- If something buggy occurs while playing, Press `L + R + ZL + ZR` to open a debug menu.
 
 ### For joining via Parsec
 This process is much simpler.
