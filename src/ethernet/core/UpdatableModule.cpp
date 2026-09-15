@@ -1,0 +1,100 @@
+#include <ethernet/core/UpdatableModule.hpp>
+
+#include <array>
+
+#include <misc/cpp/imgui_stdlib.cpp>
+
+namespace ethernet::core {
+
+	constexpr auto MAX_MODULES = 32;
+
+	//std::vector<UpdatableModule*> registeredModules;
+
+	// TODO: figure out how to use construct on first use idiom to just use a map
+	// this is just so this code doesnt need to be completely changed yet
+	struct RegisteredModule {
+		std::string_view name;
+		UpdatableModule* modulePtr {};
+	};
+
+	std::array<RegisteredModule, MAX_MODULES> registeredModules;
+	int moduleIndex = 0;
+
+	namespace detail {
+
+		void ModuleInit() {
+			// create and allocate some module pointers, to hopefully
+			// avoid allocation
+			//registeredModules = new std::vector<UpdatableModule*>();
+			//registeredModules->reserve(8);
+		}
+
+		void ModuleFini() {
+			//	delete registeredModules;
+		}
+
+		void RegisterModule(const char* name, UpdatableModule* module) {
+			if(module == nullptr || moduleIndex >= static_cast<int>(registeredModules.size()))
+				return;
+
+			//if(registeredModules == nullptr)
+			//	ModuleInit();
+
+			registeredModules[moduleIndex++] = {
+				name,
+				module
+			};
+		}
+
+		bool IsModuleRegistered(const std::string& moduleName) {
+			std::string_view view = moduleName;
+			if(view.starts_with("ethernet::core::"))
+				view.remove_prefix(10);
+
+			for(int i = 0; i < moduleIndex; ++i)
+				if(registeredModules[i].name == view)
+					return true;
+			return false;
+		}
+
+	} // namespace detail
+
+	void InitializeAllRegisteredModules() {
+		for(int i = 0; i < moduleIndex; ++i)
+			registeredModules[i].modulePtr->Initialize();
+	}
+
+	void UpdateAllRegisteredModules(fw::UpdateInfo* updateInfo) {
+		const bool sceneTransitionActive = IsSceneTransitionActive();
+		for(int i = 0; i < moduleIndex; ++i) {
+			auto* module = registeredModules[i].modulePtr;
+			if(
+				module->NeedsUpdate()
+				&& (
+					!sceneTransitionActive
+					|| module->UpdatesDuringSceneTransition()
+				)
+			)
+				module->Update(updateInfo);
+		}
+	}
+
+	void ConfigUpdateForAllRegisteredModules() {
+		for(int i = 0; i < moduleIndex; ++i)
+			if(registeredModules[i].modulePtr->HasInitialized)
+				registeredModules[i].modulePtr->OnConfigUpdate();
+	}
+
+	void SceneTransitionForAllRegisteredModules() {
+		for(int i = 0; i < moduleIndex; ++i)
+			if(registeredModules[i].modulePtr->HasInitialized)
+				registeredModules[i].modulePtr->OnSceneTransition();
+	}
+
+	void MapChangeForAllRegisteredModules(unsigned short mapId) {
+		for(int i = 0; i < moduleIndex; ++i)
+			if(registeredModules[i].modulePtr->HasInitialized)
+				registeredModules[i].modulePtr->OnMapChange(mapId);
+	}
+
+} // namespace ethernet::core

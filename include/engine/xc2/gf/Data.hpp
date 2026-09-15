@@ -1,0 +1,97 @@
+//
+// Created by block on 7/31/2022.
+//
+
+#pragma once
+
+#include <engine/xc2/ui/UIStr.hpp>
+
+namespace gf {
+
+	class GfBdatMsg {
+	   public:
+		static char* getNameMapInfo(unsigned int);
+	};
+
+	class GfBdatItem {
+	   public:
+		char* getEquipOrbModel(unsigned int itemId) const;
+	};
+
+	class GfBdatChrBl {
+	   public:
+		char* getChrBlModel(unsigned int bladeId) const;
+	};
+
+	class GfBdatChrDr {
+	   public:
+		char* getChrDrModel(unsigned int driverId) const;
+	};
+
+	class GfDataMap {
+	   public:
+		static char* getName(unsigned int);
+		static unsigned int getMapID(unsigned int);
+	};
+
+	class GfDataEvent {
+	   public:
+		static char* getEventName(unsigned int eventId);
+		static unsigned int getEventID(const char* evtName);
+		static bool isWatchedEventFlag(unsigned int eventId);
+	};
+
+	class GfDataBdat {
+	   public:
+		static unsigned char* getFP(unsigned int idx);
+	};
+
+#if ETHERNET_CODENAME(bf2)
+	class GfDataUtil {
+	   public:
+		static float getCameraYaw();
+		static void setCameraYaw(float yaw);
+		static float getCameraPitch();
+		static void setCameraPitch(float pitch);
+		static float getCameraHeight();
+		static void setCameraHeight(float height);
+		static float getPlayerCameraDistance();
+		static void setPlayerCameraDistance(float distance);
+		static unsigned char getCameraSide();
+		static void setCameraSide(unsigned char side);
+		static bool isCameraFreeMode();
+		static void setCameraFreeMode(bool enabled);
+	};
+#endif
+
+	class GfMenuBdat {
+	   public:
+		static unsigned char* getItemDataFP(unsigned char itemType, unsigned short itemId);
+		static unsigned char* getItemTextFP(unsigned char itemType, unsigned short itemId);
+	};
+
+	class GfMenuItemUtil {
+	   public:
+		static void getItemName(unsigned char itemType, unsigned int itemId, ui::UIStr& uistr);
+		static void getItemTypeName(unsigned char itemType, ui::UIStr& uistr);
+		static int getItemNum(unsigned char itemType, unsigned int itemId);
+		static bool isModelChangeItem(unsigned int, unsigned int);
+	};
+
+	class GfDataDriver {
+	   public:
+		static bool isIra(unsigned int driverId);
+	};
+
+	class GfDataBlade {
+	   public:
+		static char* getName(unsigned int bladeId, unsigned int nameIdx = 0);
+	};
+
+	class GfDataItem {
+	   public:
+		static int getItemType(unsigned int itemId);
+		static char* getCaption(unsigned int itemId);
+	};
+
+}

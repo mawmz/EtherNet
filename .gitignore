@@ -1,0 +1,10 @@
+/build/
+/docs/
+/internal/
+/reference/
+/scripts/research/
+/CMakeUserPresets.json
+*.zip
+*.log
+.DS_Store
+Thumbs.db

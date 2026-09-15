@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "configurePresets": [{
+    "name": "release-bf2",
+    "generator": "Ninja",
+    "binaryDir": "${sourceDir}/build/switch-release",
+    "toolchainFile": "cmake/NintendoSwitch.cmake",
+    "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+  }]
+}

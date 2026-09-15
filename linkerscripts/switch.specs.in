@@ -1,0 +1,8 @@
+# i hate this
+%rename link                old_link
+
+*link:
+%(old_link) -T @SKYLAUNCH_LINKERSCRIPTS_DIR@/application.ld @SKYLAUNCH_LINKERSCRIPTS_DIR@/syms.ld --shared --gc-sections --build-id=sha1 -lgcc -lstdc++
+
+*startfile:
+crti%O%s crtbegin%O%s

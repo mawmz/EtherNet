@@ -1,0 +1,60 @@
+//
+// Created by block on 12/27/2022.
+//
+
+#pragma once
+
+#include <engine/xc2/ml/Scene.hpp>
+#include <ethernet/core/Utils.hpp>
+#include <engine/xc2/mm/MathTypes.hpp>
+
+namespace ml {
+
+	class CacheDraw {
+	   public:
+		bool fontColor(const mm::Col4& color);
+		bool fontBack(const mm::Col4& color);
+		bool fontShadow(bool on);
+		bool fontScale(float x, float y);
+	};
+
+	class DebDraw {
+	   public:
+		INSERT_PADDING_BYTES(0x210);
+		CacheDraw* pCacheDraw;
+		bool notRender;
+
+		static DebDraw* getOnly(uint32_t unused);
+		static DebDraw* get(uint32_t maybeIndex); // use -1 for this
+		//void setForceRenderQueue(bool enable);
+		static unsigned int getCacheDrawWID();
+
+		static CacheDraw* getCacheDraw();
+
+		bool getScreenPos(mm::Vec3& point, const mm::Vec3& pos);
+
+		static void flushPrio(int param_1, const mm::Mat44& param_2, const mm::Mat44& param_3);
+
+		void setZComp(bool);
+		void setZWrite(bool);
+
+		void setCol(const mm::Col4& color);
+		void setMatrix(const mm::Mat44& matrix);
+
+		void renderGrid(float count, float spacing);
+
+	};
+
+	class FontLayer {
+	   public:
+		void* vtable;
+		void* DevFontLayer;
+
+		int fontGetHeight() const;
+
+		static void font(int, int, const char*, ...);
+
+		void fontSetMaxQue(unsigned int);
+	};
+
+}
